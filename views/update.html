@@ -1,0 +1,39 @@
+
+<h1>Opdater enten password eller email her</h1>
+<form action="/update?_method=PUT" method="POST">
+
+ <div>
+        <label for="email">Gammel email:</label>
+        <input type="email" id="email" name="email" >
+</div>
+    
+
+<div>
+    <label for="nyemail">Ny email:</label>
+    <input type="email" id="nyemail" name="nyemail" >
+</div>
+
+<div>
+    <label for="password">Gammelt Password:</label>
+    <input type="password" id="password" name="password" >
+</div>
+
+
+<div>
+    <label for="nytpassword">Nyt Password:</label>
+    <input type="password" id="nytpassword" name="nytpassword" >
+</div>
+
+
+<button type="submit">Submit</button>
+
+</form>
+
+    
+<div>
+    <a href="http://localhost:3030/register">Register</a>
+</div>
+
+<div>
+    <a href="http://localhost:3030/">Homepage</a>
+</div>
