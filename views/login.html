@@ -1,19 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
 
+    <script src="static/login.js" defer></script>
+
+    </head>
 <h1>Login her</h1>
 <form action="/login" method="POST">
 
 
-<div>
+
+<div class='loginDiv'>
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
-</div>
-
-<div>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
+    <input id='skrivEmail' type="submit"></input>
 </div>
 
-<button type="submit">Submit</button>
+
 
 <div>
     <a href="http://localhost:3030/register">Register</a>
@@ -24,3 +29,6 @@
 </div>
 
 </form>
+
+
+</html>

@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
+
+
+    <script src="static/index.js" defer></script>
 <body>
 
-<h1>Velkommen til</h1>
+<h1>Velkommen </h1>
 <p>Nedenunder kan du enten logge ind, lave en bruger eller logge ud.</p>
 
+<form>
+<div class="logud">
+    <label for="glemnavn">Log mig ud</label>
+    <input id="glemnavn" type="reset" value="Logout">
+</div>
+</form>
+
+
 <a href="http://localhost:3030/register">Register</a>
-<a href="http://localhost:3030/login">Login</a>
+<a href="http://localhost:3030/login" id='mitLogin'>Login</a>
 <a href="http://localhost:3030/delete">Slet bruger</a>
 <a href="http://localhost:3030/update">Opdater bruger</a>
+<a href="http://localhost:3030/opretVarer">Opret Varer</a>
+
+
+
+
 
 </body>
 </html>

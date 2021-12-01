@@ -1,6 +1,18 @@
 [
     {
-        "email": "hejjhjehjhe@hej",
+        "email": "hej@hej",
         "password": "hej"
+    },
+    {
+        "email": "mads@c",
+        "password": "lol"
+    },
+    {
+        "email": "mads@b",
+        "password": "mads"
+    },
+    {
+        "email": "mads@a",
+        "password": "a"
     }
 ]
