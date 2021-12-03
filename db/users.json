@@ -8,11 +8,19 @@
         "password": "lol"
     },
     {
-        "email": "mads@b",
-        "password": "mads"
+        "email": "mads@aa",
+        "password": "hej"
     },
     {
-        "email": "mads@a",
-        "password": "a"
-    }
+        "email": "mads@b",
+        "password": "hej"
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
 ]

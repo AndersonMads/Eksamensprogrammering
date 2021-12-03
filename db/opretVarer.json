@@ -1,0 +1,30 @@
+[
+    {
+        "email": "mads@aa",
+        "varerNavn": "hej",
+        "pris": "5",
+        "varerKategori": "Tøj",
+        "varerBillede": "pics/T-69ujnkcePZb45kr3kY_b91.jpg"
+    },
+    {
+        "email": "mads@c",
+        "varerNavn": "agurk",
+        "pris": "5",
+        "varerKategori": "Tøj",
+        "varerBillede": "pics/ieqIuGBAJ9ZuEY-6CX2ejj5_.jpg"
+    },
+    {
+        "email": "mads@aa",
+        "varerNavn": "hej",
+        "pris": "134",
+        "varerKategori": "Tøj",
+        "varerBillede": "pics/Rbeoiw31e6A-9uK0KiZXi3Rx.jpg"
+    },
+    {
+        "email": "mads@aa",
+        "varerNavn": "hej",
+        "pris": "134",
+        "varerKategori": "Tøj",
+        "varerBillede": "pics/75ryaXq9yYegRYGZGZsxn223.jpg"
+    }
+]

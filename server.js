@@ -1,4 +1,3 @@
-
 const express = require('express');
 const app = express();
 const fs = require('fs')
@@ -6,9 +5,18 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+const cors = require('cors')
+const formData = require('express-form-data')
 const methodOverride = require('method-override'); // Dette gør at vi kan lave DELETE og PUT request i vores HTML Forms!
 app.use(methodOverride('_method'));
 app.use("/static", express.static('./static/'));
+app.use('/pics', express.static('pics'));
+const pictures = {
+    uploadDir: './pics'
+}
+app.use(formData.parse(pictures))
+
+
 
 
 // Gør så vi kan se vores værdier når vi registerer, dvs req.body.name fx
@@ -44,10 +52,20 @@ app.get('/update', (req, res) => {
     res.sendFile(__dirname + '/views/update.html');
 });
 
-// Slet bruger page
+// Opret varer
 app.get('/opretVarer', (req, res) => {
     res.sendFile(__dirname + '/views/opretVarer.html')
 });
+
+// Se varer i kategori
+
+
+// Se varer i kategori
+app.get('/seVarer', (req, res) => {
+    res.sendFile(__dirname + '/views/seVarer.html')
+})
+
+
 
 
 // Save user når man registrerer - vi laver først og fremmest users.json til et array så vi kan bruge array funktioner som .push
@@ -69,8 +87,10 @@ app.post('/login', (req, res) => {
     
     for (let i = 0; i < authenticatedUsers.length; i++)
         if (authenticatedUsers[i].email == req.body.email && authenticatedUsers[i].password == req.body.password){
-            return res.redirect('/')        
+            return res.redirect('/')      
         }
+    
+        
         return res.status(400).send('forkert info')
     });
 
@@ -112,7 +132,38 @@ app.put('/update', (req, res) => {
 })
 
 
+const varerTilSalg = JSON.parse(fs.readFileSync('db/opretVarer.json'));
+// Opret varer med billede, varekategori og pris
+app.post("/opretVarer", function (req,res) {
+    let {email, varerNavn, pris, varerKategori} = req.body;
+    let varerBillede = req.files.varerBillede.path.replace('\\', '/')
+    
+    varerTilSalg.push({ email, varerNavn, pris, varerKategori, varerBillede})
+
+    fs.writeFile('db/opretVarer.json', JSON.stringify(varerTilSalg, null, 4), err => {
+        if(err) res.end(err)
+    })
+})
 
 
+app.get('/items', (req, res) => {
+    res.send(varerTilSalg)
+})
+
+
+
+function allProducts(res) {
+    let rawData = fs.readFileSync("db/opretVarer.json")
+    const parsedData = JSON.parse(rawData)
+
+    res.send(parsedData)
+    return;
+}
+
+app.get('/items', (req, res) => {
+    allProducts(res)
+})
+
+module.exports = app;
 
 
