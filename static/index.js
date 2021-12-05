@@ -25,10 +25,10 @@ function nameDisplay() {
             opdaterBruger.style.display = 'none'
             opretProdukt.style.display = 'none'
             seVarer.style.display = 'none'
+            sletVarer.style.display = 'none'
             
         }
     };
-
 
 document.body.onload = nameDisplay
 

@@ -5,7 +5,7 @@ const app = require('../server.js')
 
 chai.use(chaiHttp);
 
-/*
+
 describe('server', () => {
     describe('POST /register', () => {
         it('should push req.body to an array', (done) => {
@@ -22,7 +22,7 @@ describe('server', () => {
     })
 })
 
-*/
+
 
 // Test med få alle varer til salg. Tester om status er = 200, om det returnerer et array og om længden af det er 4
 describe('server', () => {

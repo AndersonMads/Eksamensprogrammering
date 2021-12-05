@@ -57,8 +57,10 @@ app.get('/opretVarer', (req, res) => {
     res.sendFile(__dirname + '/views/opretVarer.html')
 });
 
-// Se varer i kategori
-
+// Slet varer
+app.get('/sletVarer', (req, res) => {
+    res.sendFile(__dirname + '/views/sletVarer.html')
+})
 
 // Se varer i kategori
 app.get('/seVarer', (req, res) => {
@@ -132,23 +134,55 @@ app.put('/update', (req, res) => {
 })
 
 
+
+// Opret varer med billede, varekategori og pris, gjort så man kun kan oprette en varer hvis den email man skriver findes i users databasen
 const varerTilSalg = JSON.parse(fs.readFileSync('db/opretVarer.json'));
-// Opret varer med billede, varekategori og pris
+const registeredUsers = JSON.parse(fs.readFileSync('db/users.json'));
 app.post("/opretVarer", function (req,res) {
-    let {email, varerNavn, pris, varerKategori} = req.body;
+    for (let i = 0; i < registeredUsers.length; i++) {
+    if(registeredUsers[i].email == req.body.email && registeredUsers[i].password == req.body.password) {  // For at kunne oprette varen skal du skrive dit email og password
+    let { password, email, varerNavn, pris, varerKategori} = req.body;
     let varerBillede = req.files.varerBillede.path.replace('\\', '/')
-    
-    varerTilSalg.push({ email, varerNavn, pris, varerKategori, varerBillede})
+    let varerID = Math.random().toString(36).slice(2) // Laver et random varerID, som vi kan bruge senere til at slette varer!
+    varerTilSalg.push({ email, password, varerNavn, pris, varerKategori, varerBillede, varerID})
 
     fs.writeFile('db/opretVarer.json', JSON.stringify(varerTilSalg, null, 4), err => {
         if(err) res.end(err)
     })
+    }
+    }
 })
-
 
 app.get('/items', (req, res) => {
     res.send(varerTilSalg)
 })
+
+
+// Slet varer
+app.delete('/sletVarer/:id', function (req,res){
+    const varerTilSalg = JSON.parse(fs.readFileSync('db/opretVarer.json'));
+    for (let i = 0; i < varerTilSalg.length; i++) {
+        if(varerTilSalg[i].varerID == req.params.id){
+            varerTilSalg.splice(i, 1)
+            fs.writeFile('db/opretVarer.json', JSON.stringify(varerTilSalg, null, 4), err =>{
+                if(err) res.end(err)
+            })
+        }
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

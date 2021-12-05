@@ -1,26 +1,34 @@
-let form = document.getElementById('varerForm');
 let refresh = document.getElementById('refresh');
-let list = document.getElementById('list')
-let minEmail = document.getElementById('email')
+let sletForm = document.getElementById('sletForm')
+let sletKnap = document.getElementById('sletKnap')
 
-form.addEventListener('submit', async (e) => {
+sletKnap.addEventListener('click', (e) => {
     e.preventDefault();
     
-    const data = new FormData(form);
+    let slet = document.getElementById('sletDinVarer').value;
+
     
-    await fetch('http://localhost:3030/opretVarer', {
-        method: 'POST',
-        body: data
+
+    fetch('http://localhost:3030/sletVarer/' + slet, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json"
+        },
+    }) .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        alert('Succes' + data.msg)
+    })
+    .catch((error) => {
+        console.log('Error:', error)
     })
 });
 
-let localstorageUser = localStorage.getItem("email");
-let denneEmail = document.getElementById('denneEmail')
 
-const bruger = localStorage.getItem("email");
 
-refresh.addEventListener('click', async () => {
-    
+
+refresh.addEventListener('click', async () => { // Dette er bare en kopi fra vores Opretvarer, hvor vi kan se alle de varer vi har til salg
+    const bruger = localStorage.getItem("email");
 
     list.innerHTML = `
     <tr>
