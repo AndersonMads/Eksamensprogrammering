@@ -1,21 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <h1>Se varer her</h1>
-</head>
-<body onload="function allProducts()">
-    <div>
-    <label class="category">Category</label>
-    <select name="category" id="category" required>
-    <option value="all">All</option>
-    <option value="elektronik">Elektronik</option>
-    <option value="tøj">tøj</option>
-    </select>
-    </div>
+<html>
+  <head>
+    <script src="static/seVarer.js"></script>
+  </head>
+
+  <body>
     
-</body>
+     
 
-<button onclick="getAllProductsWithCategory()" class="reqbtn" type="submit" id="submit">Products</button>
+      <h1>Her kan du shoppe rundt i alle varer</h1>
 
-<script src="static/seVarer.js" defer></script
+        <label class="kategori">Kategori:</label>
+        <select name="kategori" id="kategori" required>
+          <option value="all">Alle</option>
+          <option value="Elektronik">Elektronik</option>
+          <option value="Tøj">Tøj</option>
+          <option value="Bolig">Bolig</option>
+        </select>
+
+        <button onclick="varerCategory()" type="submit" id="submit">Se varer</button>
+        <div id="Varer" class="Varer"></div>
+ 
+
+
+          
+          <a href="http://localhost:3030">Homepage</a>
+
+  </body>
 </html>

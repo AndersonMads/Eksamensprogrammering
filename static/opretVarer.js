@@ -1,5 +1,5 @@
 let form = document.getElementById('varerForm');
-let refresh = document.getElementById('refresh');
+let egneVarer = document.getElementById('egneVarer');
 let list = document.getElementById('list')
 let minEmail = document.getElementById('email')
 
@@ -19,7 +19,7 @@ let denneEmail = document.getElementById('denneEmail')
 
 const bruger = localStorage.getItem("email");
 
-refresh.addEventListener('click', async () => {
+egneVarer.addEventListener('click', async () => {
     
 
     list.innerHTML = `
@@ -33,7 +33,7 @@ refresh.addEventListener('click', async () => {
     </tr>
     `;
 
-    await fetch('http://localhost:3030/items', {
+    await fetch('http://localhost:3030/alleVarer', {
         method: 'GET'
     })
     .then((res) => res.json())

@@ -1,30 +1,39 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 let egneVarer = document.getElementById('egneVarer');
-let sletForm = document.getElementById('sletForm')
-let sletKnap = document.getElementById('sletKnap')
+let list = document.getElementById('list')
+let opdaterKnap = document.getElementById('opdaterKnap');
 
-sletKnap.addEventListener('click', (e) => {
+    
+opdaterKnap.addEventListener("click", (e) => {
     e.preventDefault();
-    
-    let slet = document.getElementById('sletDinVarer').value;
 
-    
+    let newName = document.getElementById("nytNavn").value;
+    let newPrice = document.getElementById("nyPris").value;
+    let newCategory = document.getElementById("nyKategori").value;
+    let ID = document.getElementById("productID").value;
 
-    fetch('http://localhost:3030/sletVarer/' + slet, {
-        method: 'DELETE',
+    let opdateretVare = {
+        productID: ID,
+        productName: newName,
+        productPrice: newPrice,
+        productCategory: newCategory,
+    }
+    fetch("http://localhost:3030/opdaterVarer", {
+        method: "PUT",
         headers: {
-            "Content-Type": "application/json"
+            "content-Type": "application/json"
         },
-    }) .then(res => res.json())
+        body: JSON.stringify(opdateretVare)
+    })
+    .then(res => res.json())
     .then(data => {
         console.log(data)
-        alert('Succes' + data.msg)
     })
     .catch((error) => {
-        console.log('Error:', error)
+        console.log(error)
     })
-});
+})
 
 
 

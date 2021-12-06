@@ -62,6 +62,11 @@ app.get('/sletVarer', (req, res) => {
     res.sendFile(__dirname + '/views/sletVarer.html')
 })
 
+// Opdater varer
+app.get('/opdaterVarer', (req,res) =>{
+    res.sendFile(__dirname + '/views/opdaterVarer.html')
+})
+
 // Se varer i kategori
 app.get('/seVarer', (req, res) => {
     res.sendFile(__dirname + '/views/seVarer.html')
@@ -101,7 +106,7 @@ app.delete('/delete', (req, res) => {
     const registeredUsers = JSON.parse(fs.readFileSync('db/users.json'));
     
     for (let i = 0; i < registeredUsers.length; i++)
-        if (registeredUsers[i].email == req.body.email){
+        if (registeredUsers[i].email == req.body.email && registeredUsers[i].password == req.body.password){
             registeredUsers.splice(i, 1)
             fs.writeFile('db/users.json', JSON.stringify(registeredUsers, null, 4), err =>{
                 if(err) res.end(err)
@@ -153,7 +158,7 @@ app.post("/opretVarer", function (req,res) {
     }
 })
 
-app.get('/items', (req, res) => {
+app.get('/alleVarer', (req, res) => {
     res.send(varerTilSalg)
 })
 
@@ -172,32 +177,38 @@ app.delete('/sletVarer/:id', function (req,res){
 })
 
 
+// Opdater varer
+app.put("/opdaterVarer", (req, res) => {
+    for (let i = 0; i < varerTilSalg.length; i++) {
+        if(varerTilSalg[i].varerID === req.body.productID) {
+            varerTilSalg[i].varerNavn = req.body.productName
+            varerTilSalg[i].varerKategori = req.body.productCategory
+            varerTilSalg[i].pris = req.body.productPrice
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-function allProducts(res) {
-    let rawData = fs.readFileSync("db/opretVarer.json")
-    const parsedData = JSON.parse(rawData)
-
-    res.send(parsedData)
-    return;
-}
-
-app.get('/items', (req, res) => {
-    allProducts(res)
+            fs.writeFile("db/opretVarer.json", JSON.stringify(varerTilSalg, null, 4), err => {
+                if(err) 
+                res.send(err)
+                res.status(200).json({msg: "Du har opdateret en vare!"})
+            })
+        }  
+    }
 })
 
-module.exports = app;
+// Se kategorier
+app.get("/kategorier", (req, res) => {
+    res.send(JSON.parse(fs.readFileSync("db/opretVarer.json")));
+    return;
+})
+
+
+
+
+
+
+
+
+
 
 

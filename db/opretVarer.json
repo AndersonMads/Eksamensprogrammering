@@ -1,20 +1,20 @@
 [
     {
-        "email": "mads@aa",
-        "password": "hej",
-        "varerNavn": "tshirt",
-        "pris": "1234",
-        "varerKategori": "Tøj",
-        "varerBillede": "pics/DuCumfWWQ-FuEAyd-PT2N-gx.jpg",
-        "varerID": "3jlfl2bi6si"
-    },
-    {
-        "email": "mads@aa",
+        "email": "hej@hej",
         "password": "hej",
         "varerNavn": "agurk",
-        "pris": "555",
-        "varerKategori": "Tøj",
-        "varerBillede": "pics/wES0H_-H7IRzy_V22gJFIZd7.jpg",
-        "varerID": "ujocac04j9i"
+        "pris": "123",
+        "varerKategori": "Elektronik",
+        "varerBillede": "pics/bV8q6M1j0XgvdUXLQ_wN0CdC.jpg",
+        "varerID": "y9501t6lagi"
+    },
+    {
+        "email": "a@b",
+        "password": "a",
+        "varerNavn": "lampe",
+        "pris": "500",
+        "varerKategori": "Bolig",
+        "varerBillede": "pics/hTjsZFHRwcjLu35rWDsmEIoO.jpg",
+        "varerID": "x9jauugleaq"
     }
 ]

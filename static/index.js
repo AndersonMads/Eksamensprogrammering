@@ -8,17 +8,15 @@ const seVarer = document.getElementById('seVarer')
 
 logUd.addEventListener('click', function(){
     localStorage.clear()
-    nameDisplay()
+    navnPåForside()
     mitLogin.style.display = 'inline'
 })
 
-function nameDisplay() {
+function navnPåForside() {
     if(localStorage.getItem('email')){
         let email = localStorage.getItem('email');
         h1.textContent = 'Velkommen ' + email;
         mitLogin.style.display = 'none'
-        
-
         } else {
             h1.textContent = 'Velkommen ukendte ven';
             sletBruger.style.display = 'none'
@@ -26,9 +24,9 @@ function nameDisplay() {
             opretProdukt.style.display = 'none'
             seVarer.style.display = 'none'
             sletVarer.style.display = 'none'
-            
+            opdaterVarer.style.display = 'none'
         }
     };
 
-document.body.onload = nameDisplay
+document.body.onload = navnPåForside
 

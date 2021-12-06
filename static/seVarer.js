@@ -1,44 +1,53 @@
 
+function varerCategory() {
+    const kategori = document.getElementById("kategori").value;
 
-function getAllProductsWithCategory() {
-    const category = document.getElementById('category').value
-
-
-    fetch('http://localhost:3030/items', {
+    fetch("http://localhost:3030/kategorier", {
         method: "GET",
     })
     .then((res) => res.json())
     .then((res) => {
         if (res) {
-            var visVarer = '<ul>'
 
-            response.forEach(function(product) {
-                if(category === "all"){
-                    visVarer +=
+            var varer = 
+            '<ul>'
+            
+            res.forEach(function(e) {
+                if(kategori === "all") {
 
-                    "<li>"
-                    + " "
-                    + "Produkt:" + " " + product.varerNavn + " " + "<br>"
-                    + "Kategori:" + " " + product.varerKategori + " " + "<br>"
-                    + "Pris:" + " " + product.pris + " " + "<br>"
-                    + "Billede:" + " " + product.varerBillede + " " + "<br>"
+                    varer += `
+                    <tr>
+                        Kategori: <td>${e.varerKategori}</td> <br>
+                        Pris: <td>${e.pris}</td> <br>
+                        Navn: <td>${e.varerNavn}</td> <br>
+                        Billede: <td><img src="${e.varerBillede}" style="height:50px;width:50px;" /></td> <br>
+                        <br>
+                        <br>
+                    </tr>
+                    `;
 
-                    "</li>";
-                } else if (product.varerKategori === category) {
-                    visVarer +=
-                    "<li>"
-                    + " "
-                    + "Produkt:" + " " + product.product + " " + "<br>"
-                    + "Kategori:" + " " + product.category + " " + "<br>"
-                    + "Pris:" + " " + product.pris + " " + "<br>"
-                    + "Billede:" + " " + product.image + " " + "<br>"
+                } else if (e.varerKategori === kategori) {
 
-                    "</li>";
+                    varer += `
+                    <tr>
+                        Kategori: <td>${e.varerKategori}</td> <br>
+                        Pris: <td>${e.pris}</td> <br>
+                        Navn: <td>${e.varerNavn}</td> <br>
+                        Billede: <td><img src="${e.varerBillede}" style="height:50px;width:50px;" /></td> <br>
+                        <br>
+                        <br>
+                    </tr>
+                    `;
                 }
-            });
-            visVarer += "</ul>";
+            }); 
 
-            document.getElementById('productContainer').innerHTML = visVarer;
+            varer += 
+            "</ul";
+
+            document.getElementById("Varer").innerHTML = varer;
         }
     })
 }
+
+
+
